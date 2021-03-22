@@ -1,0 +1,277 @@
+<html>
+
+<head>
+    <title>form-1</title>
+    <style>
+        #grid {
+            display: grid;
+            grid-template-rows: 100px 1fr;
+            border: 1px solid black;
+        }
+
+        @font-face {
+            font-family: DoHyeon-Regular;
+            src: url(./font/DoHyeon-Regular.ttf);
+        }
+
+        body {
+            font-family: DoHyeon-Regular;
+        }
+
+        fieldset {
+            border: 1.5mm ridge gray;
+            border-radius: 10px;
+        }
+
+        textarea {
+            outline: none;
+        }
+
+        input {
+            height: 40px;
+            border: 0.5px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        @keyframes input_focus {
+            from {
+                box-shadow: none;
+                border-radius: 0px;
+            }
+
+            to {
+                box-shadow: inset 0 0 5px #90C2F7;
+                border-radius: 10px;
+            }
+        }
+
+        .container:focus {
+            animation-name: input_focus;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="test05.htm">form-1</a>
+        <a href="test05-1.htm">form-2</a>
+    </nav>
+    <div id="grid">
+        <h1
+            style="text-align: center; color:white; text-shadow:1px 1px 3px gray; font-size: 3rem; letter-spacing: 2px;">
+            form-1</h1>
+        <div>
+            <p>
+                form으로 사용자가 서버에 정보를 쉽게 전달할 수 있는 페이지를 구성한다.<br>
+                속성으로 서버의 파일을 지정하고 method속성으로 전달방식을 지정.
+                (일반적으로는 post, 보안상의 문제없고 데이터의 길이가 짧을 때는 get)
+            </p>
+
+
+            <fieldset>
+                <legend>form</legend>
+                <form action="test.jsp" method="get">
+                    <h2> input type = "text" </h2>
+                    <p>input상자에 입력할 정보에 대한 설명문은 <b>label</b>태그로 지정하고 for의
+                        속성값을 input태그의 id속성값과 서로 일치시켜 글상자와 연결시킴<br><br>
+                        <label for="nm">name : </label><input id="nm" type="text" /><br>
+                        <label for="nnm">nick name : </label><input id="nnm" type="text" size="4" />
+                </form>
+            </fieldset>
+
+
+            <fieldset>
+                <legend>form</legend>
+                <form action="test.jsp" method="get">
+                    <h2> input type="password" 암호 글상자</h2>
+                    <label for="pw">password:</label><input type="password" id="pw" maxlength="6" />
+                </form>
+                <ul>
+                    <li><mark>size 속성</mark>으로 상자의 가로 길이 지정</li>
+                    <li><mark>maxlength속성</mark>으로 입력데이터의 최대길이 제한(최소는 <mark>minlength</mark>)</li>
+                </ul>
+            </fieldset>
+            <fieldset>
+                <legend>큰 글 상자</legend>
+                <h2>textarea.../textarea 큰 글상자</h2>
+                <p>cols로 상자의 가로크기, rows속성으로 세로크기를 지정.</p>
+                <textarea class="container" style="border:none;" cols="100" rows="10"></textarea>
+            </fieldset>
+            <fieldset>
+                <legend>input button types</legend>
+                <form action="test.jsp" method="get">
+                    <p>input type="submit/reset"은 폼의 정보를 전송하거나 초기화하는 역할의 버튼, input type="button" 폼과는 무관한 일반이 생성됨.</p>
+                    <input type="submit" value="확인" />
+                    <input type="reset" value="취소" />
+                    <input type="button" value="Dummy" onclick="alert('Hi')" />
+                    <hr>
+                    <h2>input type="image" 전송하는 역할의 그림</h2>
+                    <input type="image" src="colorpicker.gif" />
+                </form>
+            </fieldset>
+
+            <fieldset>
+                <form action="test.jsp" method="get">
+                    <h2>button ... /button 전송/초기화 일반 버튼</h2>
+                    <p>input submit과 같은 동작을 함.(action 링크로 간다.)</p>
+                    <input class="container" type="text" />
+                    <button>전송</button>
+                    <button type="reset">다시쓰기</button><br>
+                    <hr>
+                    <span>버튼에 이미지</span><br>
+                    <button style="border: 1px;"><img src="w3schoolscom_gray.gif"></button>
+                </form>
+            </fieldset>
+            <fieldset>
+                <legend>라디오 버튼</legend>
+                <form action="test.jsp" method="get">
+                    <h2>input type="radio" 객관식 단일선택형의 라디오버튼</h2>
+                    <p>
+                        같은 질문하의 선택지들끼리는 name속성의 값을 서로 칠치시킴<br>
+                        초기값으로 선택되어질 항목에는 checked(또는 checked="checked")를 추가함 <br>
+                        <br><mark>label로 input을 감싸준 경우 (for와 id생략 가능)</mark><br>
+                        <label><input type="radio" name="gender" checked>male</label> <br>
+                        <label><input type="radio" name="gender">male</label> <br>
+                        <label><input type="radio" name="gender">other</label>
+                    </p>
+                    <hr>
+                    <h2>input type="checkbox" 객관식 다중선택형의 체크박스</h2>
+                    <p>이용하는 교통수단은?<br>
+                        <label><input type="checkbox" />도보</label><br>
+                        <label><input type="checkbox" />버스</label><br>
+                        <label><input type="checkbox" />지하철</label><br>
+                        <label><input type="checkbox" />자전거</label><br>
+                        <label><input type="checkbox" />자가용</label><br>
+                    </p>
+                </form>
+            </fieldset>
+            <fieldset>
+                <legend>select</legend>
+                <form action="test.jsp" method="get">
+                    <h2>select.../select 공간절약형 객관식. 펼침목록(드롭다운 리스트)</h2>
+                    <p>
+                        <i>(기본) </i>교육센터까지 걸리는 시간은?<br>
+                        <select>
+                            <option>10분 이내</option>
+                            <option>30분 이내</option>
+                            <option>1시간 이내</option>
+                            <option>2시간 이내</option>
+                        </select>
+                    </p>
+                </form>
+            </fieldset>
+            <fieldset>
+                <legend>select</legend>
+                <form action="test.jsp" method="get">
+                    <h2>select.../select 공간절약형 객관식. 펼침목록(드롭다운 리스트)</h2>
+                    <p>
+                        select안에 항목들은 option태그로 묶어준다. 초기 선택은 <mark>selected</mark>를 추가<br>
+                        <i>(selected) </i>교육센터까지 걸리는 시간은?<br>
+                        <select>
+                            <option>10분 이내</option>
+                            <option selected>30분 이내</option>
+                            <option>1시간 이내</option>
+                            <option>2시간 이내</option>
+                        </select>
+                    </p>
+                </form>
+            </fieldset>
+            <fieldset>
+                <legend>multiple select</legend>
+                <p>ctrl 및 shift로 다중 선택 가능<br>
+                    (다중선택) 희망하는 팀프로젝트 회의 시간은?<br>
+                    <select multiple>
+                        <option>1교시</option>
+                        <option selected>2교시</option>
+                        <option>3교시</option>
+                        <option selected>4교시</option>
+                        <option>5교시</option>
+                        <option>6교시</option>
+                    </select>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>size="n"</legend>
+                <p>
+                    (size="n"으로 박스형) 희망하는 팀프로젝트 회의 시간은?<br>
+                    <select size="5">
+                        <option>1교시</option>
+                        <option>2교시</option>
+                        <option selected>3교시</option>
+                        <option>4교시</option>
+                        <option>5교시</option>
+                        <option>6교시</option>
+                    </select>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>select group</legend>
+                <p>
+                    <mark>optgroup</mark>으로 그룹을 지정하여 나눈다.(<mark>label</mark>로 group명 지정)<br><br>
+                    (size="n"으로 박스형) 희망하는 팀프로젝트 회의 시간은?<br>
+                    <select size="5" multiple>
+                        <optgroup label="오전">
+                            <option s>1교시</option>
+                            <option>2교시</option>
+                            <option selected>3교시</option>
+                        </optgroup>
+                        <optgroup label="오후">
+                            <option>4교시</option>
+                            <option>5교시</option>
+                            <option selected>6교시</option>
+                        </optgroup>
+                    </select>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>select group - Quiz</legend>
+                <select multiple size="4">
+                    <optgroup label="Coffe">
+                        <option>아이스아메리카노</option>
+                        <option selected>카푸치노</option>
+                        <option>콜드브루</option>
+                    </optgroup>
+                    <optgroup label="Tea">
+                        <option>자몽차</option>
+                        <option>루이보스 레몬티</option>
+                        <option selected>녹차</option>
+                    </optgroup>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <legend><mark>datalist</mark></legend>
+                <input class="container" list="datalist" />
+                <datalist id="datalist">
+                    <option value="io">
+                    <option value="typescript">
+                    <option value="data">
+                    <option value="node">
+                    <option value="jsp">
+                </datalist>
+            </fieldset>
+            <fieldset>
+                <legend>여러 타입 input</legend>
+                <h2>input type="search" 검색 상자</h2>
+                <input class="container" type="search" />
+                <hr>
+                <h2>input type="hidden" (사용자에게 보이지 않는 데이터 전송용)</h2>
+                <input class="container" type="hidden" value="vip" />
+                <hr>
+                <h2>input type="file" 파일 전송용</h2>
+                <label>poto<input type="file"> </label>
+            </fieldset>
+
+        </div>
+    </div>
+</body>
+
+</html>
